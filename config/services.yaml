@@ -2,6 +2,8 @@
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     env(REDIS_URL): redis://localhost:6379
+    env(BUGSNAG_KEY): ''
+    env(BUGSNAG_STAGE): ''
 
 services:
     # default configuration for services in *this* file
@@ -36,6 +38,7 @@ services:
             $applications:
                 - '@JoliCode\SecretSanta\Application\SlackApplication'
                 - '@JoliCode\SecretSanta\Application\DiscordApplication'
+                - '@JoliCode\SecretSanta\Application\FacebookApplication'
 
     JoliCode\SecretSanta\Controller\SlackController:
         public: true
@@ -48,6 +51,12 @@ services:
         arguments:
             $discordClientId: '%env(DISCORD_CLIENT_ID)%'
             $discordClientSecret: '%env(DISCORD_CLIENT_SECRET)%'
+
+    JoliCode\SecretSanta\Controller\FacebookController:
+        public: true
+        arguments:
+            $facebookClientId: '%env(FACEBOOK_CLIENT_ID)%'
+            $facebookClientSecret: '%env(FACEBOOK_CLIENT_SECRET)%'
 
     JoliCode\SecretSanta\Discord\ApiHelper:
         public: true

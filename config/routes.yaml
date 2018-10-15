@@ -41,3 +41,7 @@ slack_authenticate:
 discord_authenticate:
     path:     /auth/discord
     defaults: { _controller: JoliCode\SecretSanta\Controller\DiscordController::authenticate }
+
+facebook_authenticate:
+    path:     /auth/facebook
+    defaults: { _controller: JoliCode\SecretSanta\Controller\FacebookController::authenticate }
